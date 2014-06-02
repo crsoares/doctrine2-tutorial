@@ -14,8 +14,6 @@ class Lancamentofinanceiro
      * @var integer
      *
      * @Column(name="IdLoja", type="integer", nullable=false)
-     * @Id
-     * @GeneratedValue(strategy="NONE")
      */
     private $idloja;
 
@@ -23,6 +21,8 @@ class Lancamentofinanceiro
      * @var integer
      *
      * @Column(name="IdLancamentoFinanceiro", type="integer", nullable=false)
+     * @Id
+     * @GeneratedValue(strategy="NONE")
      */
     private $idlancamentofinanceiro;
 

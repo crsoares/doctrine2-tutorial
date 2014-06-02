@@ -13,6 +13,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Pessoa
 {
     /**
+     * @OneToMany(targetEntity="ContaReceberDados", mappedBy="receberPessoa")
+     * @JoinColumn(name="idpessoa", referencedColumnName="IdPessoa")
+     */
+    private $pessoaConta;
+
+    /**
      * @var integer
      *
      * @Column(name="IdPessoa", type="integer")
@@ -345,7 +351,12 @@ class Pessoa
 
     public function __construct()
     {
-        $this->idpessoa = new ArrayCollection();
+        $this->pessoaConta = new ArrayCollection();
+    }
+
+    public function getPessoaConta()
+    {
+        return $this->pessoaConta->toArray();
     }
 
     /**

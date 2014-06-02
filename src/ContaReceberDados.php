@@ -1,13 +1,33 @@
 <?php
 
-//use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @Entity
- * @Table(name="ContaReceber")
+ * @Table(name="ContaReceberDados")
  */
-class ContaReceber
+class ContaReceberDados
 {
+    /**
+     * @ManyToOne(targetEntity="Pessoa")
+     * @JoinColumn(name="idpessoa", referencedColumnName="IdPessoa")
+     */
+    private $receberPessoa;
+
+    /**
+     * @ManyToMany(targetEntity="Lancamentofinanceiro")
+     * @JoinTable(name="LancamentoFinanceiroContaReceber",
+     *      joinColumns={@JoinColumn(name="idcontareceber", referencedColumnName="IdContaReceber")},
+     *      inverseJoinColumns={@JoinColumn(name="idlancamentofinanceiro", referencedColumnName="IdLancamentoFinanceiro")})
+     */
+    private $contaLancamento;
+
+    /**
+     * @OneToOne(targetEntity="Localcobranca")
+     * @JoinColumn(name="idlocalcobranca", referencedColumnName="IdLocalCobranca")
+     */
+    private $contaLocal;
+
      /**
      * @var integer
      * @Column(name="IdLoja", type="integer", nullable=false)
@@ -17,11 +37,7 @@ class ContaReceber
     /**
      * @var integer
      *
-     * @ManyToMany(targetEntity="Lancamentofinanceiro")
-     * @JoinTable(name="LancamentoFinanceiroContaReceber", 
-     *           joinColumns={@JoinColumn(name="idcontareceber", referencedColumnName="id")},
-     *           inverseJoinColumns={@JoinColumn(name="idlancamentofinanceiro", referencedColumnName="id")}
-     *          )
+     * @Column(name="IdContaReceber", type="integer", nullable=false)
      */
     private $idcontareceber;
 
@@ -216,12 +232,25 @@ class ContaReceber
     private $dataalteracao;
 
 
-    /*public function __construct()
+    public function __construct()
     {
-        $this->idcontareceber = new ArrayCollection();
-    }*/
+        //$this->idcontareceber = new ArrayCollection();
+    }
 
+    public function getReceberPessoa()
+    {
+        return $this->receberPessoa;
+    }
 
+    public function getContaLancamento()
+    {
+        return $this->contaLancamento->toArray();
+    }
+
+    public function getContaLocal()
+    {
+        return $this->contaLocal;
+    }
 
     /**
      * Set idloja
