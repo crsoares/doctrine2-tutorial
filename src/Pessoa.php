@@ -8,13 +8,13 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Pessoa
  *
  * @Table(name="Pessoa")
- * @Entity
+ * @Entity(repositoryClass="PessoaRepository")
  */
 class Pessoa
 {
     /**
-     * @OneToMany(targetEntity="ContaReceberDados", mappedBy="receberPessoa")
-     * @JoinColumn(name="idpessoa", referencedColumnName="IdPessoa")
+     * @OneToMany(targetEntity="ContaReceberDados", mappedBy="receberPessoa", fetch="EXTRA_LAZY")
+     * @JoinColumn(name="IdPessoa", referencedColumnName="IdPessoa")
      */
     private $pessoaConta;
 
@@ -356,7 +356,7 @@ class Pessoa
 
     public function getPessoaConta()
     {
-        return $this->pessoaConta->toArray();
+        return $this->pessoaConta;
     }
 
     /**

@@ -3,28 +3,28 @@
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @Entity
+ * @Entity(repositoryClass="ContaReceberDadosRepository")
  * @Table(name="ContaReceberDados")
  */
 class ContaReceberDados
 {
     /**
-     * @ManyToOne(targetEntity="Pessoa")
-     * @JoinColumn(name="idpessoa", referencedColumnName="IdPessoa")
+     * @ManyToOne(targetEntity="Pessoa", fetch="EXTRA_LAZY")
+     * @JoinColumn(name="IdPessoa", referencedColumnName="IdPessoa")
      */
     private $receberPessoa;
 
     /**
-     * @ManyToMany(targetEntity="Lancamentofinanceiro")
+     * @ManyToMany(targetEntity="Lancamentofinanceiro", fetch="EXTRA_LAZY")
      * @JoinTable(name="LancamentoFinanceiroContaReceber",
-     *      joinColumns={@JoinColumn(name="idcontareceber", referencedColumnName="IdContaReceber")},
-     *      inverseJoinColumns={@JoinColumn(name="idlancamentofinanceiro", referencedColumnName="IdLancamentoFinanceiro")})
+     *      joinColumns={@JoinColumn(name="IdContaReceber", referencedColumnName="IdContaReceber")},
+     *      inverseJoinColumns={@JoinColumn(name="IdLancamentoFinanceiro", referencedColumnName="IdLancamentoFinanceiro")})
      */
     private $contaLancamento;
 
     /**
-     * @OneToOne(targetEntity="Localcobranca")
-     * @JoinColumn(name="idlocalcobranca", referencedColumnName="IdLocalCobranca")
+     * @OneToOne(targetEntity="Localcobranca", fetch="EXTRA_LAZY")
+     * @JoinColumn(name="IdLocalCobranca", referencedColumnName="IdLocalCobranca")
      */
     private $contaLocal;
 
