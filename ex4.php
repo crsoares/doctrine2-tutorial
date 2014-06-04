@@ -1,4 +1,7 @@
 <?php
+set_time_limit(0);
+//ini_set('memory_limit', '2000M');
+ini_set('memory_limit', '-1');
 
 require_once "bootstrap.php";
 

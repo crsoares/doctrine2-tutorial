@@ -30,13 +30,14 @@ class ContaReceberDados
 
      /**
      * @var integer
+     * @Id
      * @Column(name="IdLoja", type="integer", nullable=false)
      */
     private $idloja;
 
     /**
      * @var integer
-     *
+     * @Id
      * @Column(name="IdContaReceber", type="integer", nullable=false)
      */
     private $idcontareceber;
